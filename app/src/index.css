@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 53% 4%; /* #050810 */
+    --foreground: 210 20% 92%;
+    --card: 222 47% 7%; /* #0c1220 */
+    --card-foreground: 210 20% 92%;
+    --popover: 222 47% 7%;
+    --popover-foreground: 210 20% 92%;
+    --primary: 188 86% 53%; /* cyan #22d3ee */
+    --primary-foreground: 222 53% 4%;
+    --secondary: 220 42% 11%; /* #111a2b */
+    --secondary-foreground: 210 20% 92%;
+    --muted: 220 42% 11%;
+    --muted-foreground: 217 15% 55%;
+    --accent: 220 42% 13%;
+    --accent-foreground: 188 86% 53%;
+    --destructive: 0 72% 62%; /* #f87171 */
+    --destructive-foreground: 0 0% 98%;
+    --border: 221 44% 16%; /* #1a2540 */
+    --input: 221 44% 16%;
+    --ring: 188 86% 53%;
+    --radius: 0.375rem;
+    --sidebar-background: 222 53% 4%;
+    --sidebar-foreground: 210 20% 92%;
+    --sidebar-primary: 188 86% 53%;
+    --sidebar-primary-foreground: 222 53% 4%;
+    --sidebar-accent: 220 42% 11%;
+    --sidebar-accent-foreground: 210 20% 92%;
+    --sidebar-border: 221 44% 16%;
+    --sidebar-ring: 188 86% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Inter", system-ui, sans-serif;
+  }
+  .font-mono,
+  code,
+  kbd,
+  pre {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+  }
+}
+
+/* ---- EmotionVerse design system ---- */
+
+.ev-label {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: hsl(217 15% 55%);
+}
+
+.ev-panel {
+  background: hsl(222 47% 7%);
+  border: 1px solid hsl(221 44% 16%);
+  border-radius: 6px;
+}
+
+.ev-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid hsl(221 44% 16%);
+}
+
+/* pulsing status LED */
+.ev-led {
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  position: relative;
+  flex: none;
+}
+.ev-led::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  border: 1px solid currentColor;
+  opacity: 0;
+  animation: ev-led-pulse 1.6s ease-out infinite;
+}
+@keyframes ev-led-pulse {
+  0% { transform: scale(0.4); opacity: 0.7; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* ticker marquee */
+@keyframes ev-ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ev-ticker-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: ev-ticker 48s linear infinite;
+}
+
+/* subtle scanline texture over the app background */
+.ev-scanlines::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 2px,
+    rgba(255, 255, 255, 0.008) 2px 3px
+  );
+}
+
+/* thin themed scrollbars */
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+}
+
+/* emotion probability bar fill animation */
+.ev-bar {
+  transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* blink for LIVE badge */
+@keyframes ev-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+.ev-blink {
+  animation: ev-blink 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ev-led::after,
+  .ev-ticker-track,
+  .ev-blink {
+    animation: none;
+  }
+}

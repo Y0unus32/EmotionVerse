@@ -1,0 +1,190 @@
+{
+ "classes": [
+  "neutral",
+  "happy",
+  "sad",
+  "angry",
+  "fear",
+  "surprise",
+  "disgust"
+ ],
+ "test_accuracy": 0.9964,
+ "macro_f1": 0.9965,
+ "n_train": 7840,
+ "n_test": 1960,
+ "confusion_matrix": [
+  [
+   278,
+   1,
+   1,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   306,
+   0,
+   0,
+   0,
+   2,
+   0
+  ],
+  [
+   1,
+   0,
+   276,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   268,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   278,
+   0,
+   0
+  ],
+  [
+   0,
+   1,
+   0,
+   0,
+   0,
+   271,
+   0
+  ],
+  [
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   276
+  ]
+ ],
+ "per_class": {
+  "neutral": {
+   "precision": 0.993,
+   "recall": 0.993,
+   "f1": 0.993
+  },
+  "happy": {
+   "precision": 0.994,
+   "recall": 0.994,
+   "f1": 0.994
+  },
+  "sad": {
+   "precision": 0.996,
+   "recall": 0.996,
+   "f1": 0.996
+  },
+  "angry": {
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0
+  },
+  "fear": {
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0
+  },
+  "surprise": {
+   "precision": 0.993,
+   "recall": 0.996,
+   "f1": 0.994
+  },
+  "disgust": {
+   "precision": 1.0,
+   "recall": 0.996,
+   "f1": 0.998
+  }
+ },
+ "ablation": {
+  "physio_only": 0.8612,
+  "face_only": 0.9801,
+  "fusion": 0.9964
+ },
+ "training_history": [
+  {
+   "epoch": 1,
+   "train_loss": 1.6959,
+   "train_acc": 0.4001
+  },
+  {
+   "epoch": 6,
+   "train_loss": 0.0288,
+   "train_acc": 0.9923
+  },
+  {
+   "epoch": 11,
+   "train_loss": 0.0092,
+   "train_acc": 0.9977
+  },
+  {
+   "epoch": 16,
+   "train_loss": 0.0046,
+   "train_acc": 0.999
+  },
+  {
+   "epoch": 21,
+   "train_loss": 0.0067,
+   "train_acc": 0.998
+  },
+  {
+   "epoch": 26,
+   "train_loss": 0.0042,
+   "train_acc": 0.9994
+  },
+  {
+   "epoch": 31,
+   "train_loss": 0.0027,
+   "train_acc": 0.9997
+  },
+  {
+   "epoch": 36,
+   "train_loss": 0.0044,
+   "train_acc": 0.9987
+  },
+  {
+   "epoch": 41,
+   "train_loss": 0.0053,
+   "train_acc": 0.999
+  },
+  {
+   "epoch": 46,
+   "train_loss": 0.0016,
+   "train_acc": 0.9996
+  },
+  {
+   "epoch": 51,
+   "train_loss": 0.001,
+   "train_acc": 0.9999
+  },
+  {
+   "epoch": 56,
+   "train_loss": 0.0011,
+   "train_acc": 0.9997
+  },
+  {
+   "epoch": 60,
+   "train_loss": 0.0012,
+   "train_acc": 0.9999
+  }
+ ],
+ "architecture": "Dual-branch MLP encoders (physio 11-32-32, face 10-32-32) + learned softmax attention gate with signal-quality inputs -> gated concat -> head 64-48-7 (dropout 0.2), Adam lr=1e-3, 60 epochs"
+}
